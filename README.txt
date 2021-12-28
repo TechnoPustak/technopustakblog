@@ -1,5 +1,2 @@
-# vim: set ft=rst:
-
-See https://help.pythonanywhere.com/ (or click the "Help" link at the top
-right) for help on how to use PythonAnywhere, including tips on copying and
-pasting from consoles, and writing your own web applications.
+This is the flask code of my youtube's channel blog and it is hosted on pythonanywhere website so you can visit this blog from this link:
+technopustakblog.pythonanywhere.com
