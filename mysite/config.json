@@ -1,0 +1,17 @@
+{
+    "params":
+    {
+        "blog_name":"Techno Pustak",
+        "tagline":"No Fake No Lack Only Tech",
+        "fb":"https://facebook.com",
+        "git":"https://github.com",
+        "youtube":"https://www.youtube.com/channel/UCdCPD_iDtufNE675gfxktng",
+        "gmail-user":"factsworld1109@gmail.com",
+        "gmail-password":"ofmjtewyfznrwemv",
+        "no_of_posts":2,
+        "login_image":"login.jpg",
+        "admin_user":"techno",
+        "admin_password":"1109ashutosh08",
+        "upload_location":"/home/TechnoPustakBlog/mysite/static/assets/img/"
+    }
+}

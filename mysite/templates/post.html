@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+    img {width:500vh;
+        height:auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<!-- Page Header-->
+{% set fname = 'assets/img/' + post.img_file %}
+<header class="masthead" style="background-image: url('{{ url_for('static', filename=fname) }}')">
+<div class="overlay"></div>
+<div class="container">
+<div class="row">
+<div class="col-lg-8 col-md-10 mx-auto">
+<div class="post-heading">
+<h1>{{post.title}}</h1>
+<h2 class="subheading">{{post.subhead}}</h2>
+<span class="meta">
+Posted by
+<a href="#!">Admin</a>
+on {{post.date}}
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Post Content-->
+<article>
+<div class="container">
+<div class="row">
+<audio style='width:100%' loop controls>
+        {% set sno = post.sno|string %}
+        <source src="{{ url_for('static', filename= 'assets/audio/' + sno + '.mp3') }}">
+</audio>
+{% if post.ytlink %}
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" width="100%" height="auto" src="{{post.ytlink}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+{% endif %}<br>
+{% for line in post.content.splitlines() %}{% if ':-' in line %}<h2><br>{{ line }}</h2>{% elif '<img>' in line %}<img loading='lazy' class='img-fluid' src="../static/assets/img/{{ line.replace('<img>', '') }}" alt='{{ line }}'><br>{% else %}{% set myline = line.split(' ') %}{% for lol in myline %}{% if 'http' in lol %}<a href='{{ lol }}' target='_blank' style='color:blue;'>{{ lol }}</a>{% else %} {{ lol }}{% endif %}{% endfor %}<br>{% endif %}{% endfor %}
+<span class='float-right'>--Techno Pustak</span>
+</div>
+</div><br><hr>
+<h3>Add a comment</h3>
+<form action='/post/{{post.slug}}' method='POST'>
+Name:
+<input type='text' id="name" name="name" class="form-control" required><br>
+Email:
+<input type='text' id="email" name="email" class="form-control" required><br>
+Comment:<br>
+<textarea name='comment' id='comment' class="form-control" rows="5" required></textarea><br>
+<button type="reset" class="btn btn-success float-left">Cancel</button>
+<button type="submit" class="btn btn-primary float-right">Send →</button>
+</form><br><br><hr>
+<h5>Comments :-</h5>
+<div id='comments'>
+{% for comment in comments|reverse %}
+  Posted by {{comment.name}}:-<br>
+  <!-- Email - {{comment.email}} -->
+  {{comment.comment}}<br><br>
+{% endfor %}
+</div>
+</div>
+</div>
+</article>
+<script src='{{ url_for('static', filename='script.js') }}'></script>
+<script async src="https://widget.websitevoice.com/nkObNUMcRu7UY4WX9jMaWQ"></script>
+<script>
+  window.wvData=window.wvData||{};function wvtag(a,b){wvData[a]=b;}
+  wvtag('id', 'nkObNUMcRu7UY4WX9jMaWQ');
+  wvtag('widget-style', {
+    backgroundColor: '#0085A1',
+    showTooltip: true,
+    tooltipText: 'Click here to listen.'
+  });
+</script>
+{% endblock %}

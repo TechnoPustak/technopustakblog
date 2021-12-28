@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('  {{ url_for('static', filename='assets/img/home-bg.jpg') }}  ')">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="site-heading">
+                            <h1>Admin Panel</h1>
+                            <span class="subheading">Manage your posts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                  <h1>Basic Actions</h1><br>
+                  <p>Note: use &lt;img&gt;<i>image_name to insert images</i></p>
+                  <a href='/edit/0'><button class="btn btn-primary">Add a new post</button></a>
+                  <a href='/logout'><button class="btn btn-primary">Logout</button></a><hr>
+                  <h1>Add/Edit Post</h1>
+                  <form id="contactForm" action='/edit/{{sno}}' method="POST" name="sentMessage" novalidate>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Title</label>
+                            <input class="form-control" id="name" name='title' type="title" placeholder="Title" value='{{post.title}}' required data-validation-required-message="Please enter your name." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Subhead</label>
+                            <input class="form-control" name='subhead' id="subhead" type="text" value='{{post.subhead}}' placeholder="Subhead" required data-validation-required-message="Please enter your email address." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Slug</label>
+                            <input class="form-control" name='slug' id="slug" type="text" value='{{post.slug}}' placeholder="Slug" required data-validation-required-message="Please enter your phone number." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Content</label>
+                            <textarea class="form-control" name='content' id="content" rows="5" placeholder="Content" required data-validation-required-message="Please enter a message.">{{post.content}}</textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Img File</label>
+                            <input class="form-control" name='img_file' id="img_file" type="text" placeholder="Img_file" value='{{post.img_file}}' required data-validation-required-message="Please enter your phone number." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Youtube Link (Optional)</label>
+                            <input class="form-control" name='ytlink' id="ytlink" type="text" value='{{post.ytlink}}' placeholder="Youtube Link" data-validation-required-message="Please enter your youtube link." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <br />
+                    <div id="success"></div>
+                    <button class="btn btn-primary" id="sendMessageButton" type="submit">Submit</button>
+                </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}
